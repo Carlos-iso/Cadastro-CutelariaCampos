@@ -1,44 +1,39 @@
 const btmSubmit = document.querySelector(".btn-create");
-const msgsuccess = document.querySelector(".msgsuccess");
 const msgerror = document.querySelector(".msgerror");
+const msgsuccess = document.querySelector(".msgsuccess");
+const urlLocal = "http://localhost:3000";
 const urlRender = "https://api-cutelariacampos.onrender.com";
-const urlBase = urlRender;
+const urlBase = urlLocal;
 
 async function validForm() {
-  try {
-    if (
-      validName === true &&
-      validEmail === true &&
-      validPassword === true &&
-      validConfirmPassword === true
-    ) {
-      let nameValue = $name.value;
-      let emailValue = email.value;
-      let passwordValue = password.value;
+  if (
+    validName === true &&
+    validEmail === true &&
+    validPassword === true &&
+    validConfirmPassword === true
+  ) {
+    let nameValue = $name.value;
+    let emailValue = email.value;
+    let passwordValue = password.value;
 
-      let jsonDataCustomer = JSON.stringify({
-        name: nameValue,
-        email: emailValue,
-        password: passwordValue,
-      });
-      await fetch(`${urlBase}/account/new`, {
-        method: "POST",
-        body: jsonDataCustomer,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then(await awtResponce(msgSuccess))
-        .then(await dataPost)
-        .then(await resetFilds())
-        .catch((err) => console.error(err))
-        .catch(await msgError());
-      return;
-    }
-  } catch {
-    console.log(err);
-    await msgError();
+    let jsonDataCustomer = JSON.stringify({
+      name: nameValue,
+      email: emailValue,
+      password: passwordValue,
+    });
+    fetch(`${urlBase}/account/new`, {
+      method: "POST",
+      body: jsonDataCustomer,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(await msgSuccess)
+      .then(await resetFilds)
+      .catch(await msgError);
+  } else {
+    await msgError;
   }
 }
 
@@ -75,4 +70,4 @@ function resetFilds() {
   disabledInputConfirmPassword();
 }
 
-btmSubmit.addEventListener("click", validForm());
+btmSubmit.addEventListener("click", validForm);
