@@ -3,7 +3,7 @@ const msgerror = document.querySelector(".msgerror");
 const msgsuccess = document.querySelector(".msgsuccess");
 const urlLocal = "http://localhost:3000";
 const urlRender = "https://api-cutelariacampos.onrender.com";
-const urlBase = urlLocal;
+const urlBase = urlRender;
 
 async function validForm() {
   if (
@@ -21,7 +21,7 @@ async function validForm() {
       email: emailValue,
       password: passwordValue,
     });
-    fetch(`${urlBase}/account/new`, {
+    await fetch(`${urlBase}/account/new`, {
       method: "POST",
       body: jsonDataCustomer,
       headers: {
@@ -41,6 +41,10 @@ function awtResponce() {
   (response) => response.json();
 }
 
+function dataPost() {
+  (dataPost) => console.log(dataPost);
+}
+
 function msgSuccess() {
   msgsuccess.setAttribute("style", "display: block");
   msgsuccess.innerHTML = "<strong>Dados Cadastrados Com Sucesso!</strong>";
@@ -53,10 +57,6 @@ function msgError() {
   msgerror.innerHTML = "<strong>Erro Ao Cadastrar Dados!</strong>";
   msgsuccess.setAttribute("style", "display: none");
   msgsuccess.innerHTML = "";
-}
-
-function dataPost() {
-  (dataPost) => console.log(dataPost);
 }
 
 function resetFilds() {
