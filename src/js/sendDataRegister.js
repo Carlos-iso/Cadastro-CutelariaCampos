@@ -3,10 +3,9 @@ const msgsuccess = document.querySelector(".msgsuccess");
 const msgerror = document.querySelector(".msgerror");
 const urlLocal = "http://localhost:3000";
 const urlRender = "https://api-cutelariacampos.onrender.com";
-const urlBase = urlLocal;
+const urlBase = urlRender;
 
 async function validForm() {
-  try {
     if (
       validName === true &&
       validEmail === true &&
@@ -30,15 +29,11 @@ async function validForm() {
           "Content-Type": "application/json",
         },
       })
-        .then(await awtResponce(msgSuccess))
-        .then(await dataPost)
-        .then(await resetFilds())
+        .then(await resetFilds)
+        .then(await msgSuccess)
         .catch((err) => console.error(err))
         .catch(await msgError());
-      return;
-    }
-  } catch {
-    console.log(err);
+    } else {
     await msgError();
   }
 }
