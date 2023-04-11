@@ -29,34 +29,36 @@ async function validForm() {
         "Content-Type": "application/json",
       },
     })
-      .then(await msgSuccess)
-      .then(await resetFilds)
-      .catch(await msgError);
+      .then(awtResponce)
+      .then(dataPost)
+      .then(msgSuccess)
+      .then(resetFilds)
+      .catch(() => msgError());
   } else {
-    await msgError;
+    msgError();
   }
 }
 
-function awtResponce() {
-  (response) => response.json();
+function awtResponce(response) {
+  return response.json();
 }
 
-function dataPost() {
-  (dataPost) => console.log(dataPost);
+function dataPost(dataPost) {
+  return console.log(dataPost);
 }
 
 function msgSuccess() {
   msgsuccess.setAttribute("style", "display: block");
-  msgsuccess.innerHTML = "<strong>Dados Cadastrados Com Sucesso!</strong>";
+  msgsuccess.innerHTML = `<strong>${"Dados Cadastrados Com Sucesso!"}</strong>`;
   msgerror.setAttribute("style", "display: none");
   msgerror.innerHTML = "";
 }
 
 function msgError() {
-  msgerror.setAttribute("style", "display: block");
-  msgerror.innerHTML = "<strong>Erro Ao Cadastrar Dados!</strong>";
   msgsuccess.setAttribute("style", "display: none");
   msgsuccess.innerHTML = "";
+  msgerror.setAttribute("style", "display: block");
+  msgerror.innerHTML = `<strong>${"Erro Ao Cadastrar Dados!"}</strong>`;
 }
 
 function resetFilds() {
