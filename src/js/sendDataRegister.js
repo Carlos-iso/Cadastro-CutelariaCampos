@@ -33,9 +33,10 @@ async function validForm() {
     })
       .then(awtResponce)
       .then(dataPost)
-      .then(msgSuccessStyle)
       .then(msgSuccessText)
-      .catch(() => msgError());
+      .then(msgSuccessStyle)
+      .catch(msgErrorText)
+      .catch(msgErrorStyle);
   } else {
     $msg = clearFileld;
     msgErrorStyle();
