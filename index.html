@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="icon" type="image/svg+xml" href="src/favicon/Faca.svg">
     <link rel="stylesheet" type="text/css" href="./src/css/style-cadastro.css">
 </head>
+
 <body>
 
     <div class="container">
@@ -16,6 +18,17 @@
 
         <div class="msgerror"></div>
         <div class="msgsuccess"></div>
+        <div style="display: none;" class="loader">
+            <div class="loadingio-spinner-disk-xyecf0k9m4">
+                <div class="ldio-tcby9sh2kn">
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <a>Cadastrando...</a>
+        </div>
 
         <form class="inputs-cadastro" action="Formulário De Cadastro">
 
@@ -32,13 +45,13 @@
             <div class="label-float">
                 <input type="password" class="password" name="password" placeholder="" required>
                 <label class="password-label" for="password">Senha</label>
-                <img  class="eye" src="./src/icons/eye-open.svg" alt="Ver Senha">
+                <img class="eye" src="./src/icons/eye-open.svg" alt="Ver Senha">
             </div>
 
             <div class="label-float">
                 <input type="password" class="confirm-password" name="confirm-password" placeholder="" required>
                 <label class="confirmpassword-label" for="confirm-password">Comfirmar Senha</label>
-                <img  id="eye" src="./src/icons/eye-open.svg" alt="Ver Senha">
+                <img id="eye" src="./src/icons/eye-open.svg" alt="Ver Senha">
             </div>
 
         </form>
@@ -51,7 +64,7 @@
             <p>Já Tem Uma Conta?
                 <a class="cadastre" href="#">Entrar</a>
             </p>
-            <p>Entrar Como 
+            <p>Entrar Como
                 <a class="cadastre" href="#">Visitante</a>
             </p>
         </div>
@@ -74,4 +87,5 @@
     <script type="text/javascript" src="./src/js/sendDataRegister.js"></script>
 
 </body>
+
 </html>

@@ -1,9 +1,11 @@
-const btmSubmit = document.querySelector(".btn-create");
-const msgerror = document.querySelector(".msgerror");
-const msgsuccess = document.querySelector(".msgsuccess");
+const $btmSubmit = document.querySelector(".btn-create");
+const $msgerror = document.querySelector(".msgerror");
+const $msgsuccess = document.querySelector(".msgsuccess");
 const urlLocal = "http://localhost:3000";
 const urlRender = "https://api-cutelariacampos.onrender.com";
 const urlBase = urlRender;
+let clearFileld = "Campos Vazios";
+let $msg;
 
 async function validForm() {
   if (
@@ -12,14 +14,14 @@ async function validForm() {
     validPassword === true &&
     validConfirmPassword === true
   ) {
-    let nameValue = $name.value;
-    let emailValue = email.value;
-    let passwordValue = password.value;
+    let $nameValue = $name.value;
+    let $emailValue = $email.value;
+    let $passwordValue = $password.value;
 
     let jsonDataCustomer = JSON.stringify({
-      name: nameValue,
-      email: emailValue,
-      password: passwordValue,
+      name: $nameValue,
+      email: $emailValue,
+      password: $passwordValue,
     });
     await fetch(`${urlBase}/account/new`, {
       method: "POST",
@@ -35,41 +37,42 @@ async function validForm() {
       .then(resetFilds)
       .catch(() => msgError());
   } else {
-    msgError();
+    $msg = $msgerror.innerHTML = `<strong>${clearFileld}</strong>`;
+    msgError()
   }
 }
 
 function awtResponce(response) {
-  return response.json();
+  return response.text();
 }
 
 function dataPost(dataPost) {
-  return console.log(dataPost);
+  $msg = dataPost
 }
 
 function msgSuccess() {
-  msgsuccess.setAttribute("style", "display: block");
-  msgsuccess.innerHTML = `<strong>${"Dados Cadastrados Com Sucesso!"}</strong>`;
-  msgerror.setAttribute("style", "display: none");
-  msgerror.innerHTML = "";
+  $msgsuccess.setAttribute("style", "display: block");
+  $msgsuccess.innerHTML = `<strong>${$msg}</strong>`;
+  $msgerror.setAttribute("style", "display: none");
+  $msgerror.innerHTML = "";
 }
 
 function msgError() {
-  msgsuccess.setAttribute("style", "display: none");
-  msgsuccess.innerHTML = "";
-  msgerror.setAttribute("style", "display: block");
-  msgerror.innerHTML = `<strong>${"Erro Ao Cadastrar Dados!"}</strong>`;
+  $msgsuccess.setAttribute("style", "display: none");
+  $msgsuccess.innerHTML = "";
+  $msgerror.setAttribute("style", "display: block");
+  $msgerror.innerHTML = `<strong>${$msg}</strong>`;
 }
 
 function resetFilds() {
   $name.value = "";
   disabledInputName();
-  email.value = "";
+  $email.value = "";
   disabledInputEmail();
-  password.value = "";
+  $password.value = "";
   disabledInputPassword();
-  confirmPassword.value = "";
+  $confirmPassword.value = "";
   disabledInputConfirmPassword();
 }
 
-btmSubmit.addEventListener("click", validForm);
+$btmSubmit.addEventListener("click", validForm);
