@@ -1,3 +1,4 @@
+const loader = document.querySelector(".loader");
 const $btmSubmit = document.querySelector(".btn-create");
 const $msgerror = document.querySelector(".msgerror");
 const $msgsuccess = document.querySelector(".msgsuccess");
@@ -8,6 +9,7 @@ let invalidFileld = "Campos Inválidos";
 let $msg = "Erro";
 
 async function validForm() {
+  showLoader();
   if (
     validName === true &&
     validEmail === true &&
@@ -41,11 +43,12 @@ async function validForm() {
     msgErrorText();
     colors();
   }
-}
+  hideLoader();
+};
 
 function awtResponce(response) {
   return response.json();
-}
+};
 
 function dataPost(dataPost) {
   $msg = Object.values(dataPost);
@@ -64,8 +67,8 @@ function dataPost(dataPost) {
     msgErrorStyle();
     msgErrorText();
     colors();
-  }
-}
+  };
+};
 
 function colors() {
   $labelName.setAttribute("style", "color: var(--cor9)");
@@ -76,27 +79,44 @@ function colors() {
   $password.setAttribute("style", "border-bottom: 2px solid var(--cor9)");
   $labelConfirmPassword.setAttribute("style", "color: var(--cor9)");
   $confirmPassword.setAttribute("style", "border-bottom: 2px solid var(--cor9)");
-}
+};
 
 function msgSuccessText() {
   $msgsuccess.innerHTML = `<strong>${$msg}</strong>`;
-}
+};
 
 function msgSuccessStyle() {
   $msgsuccess.setAttribute("style", "display: block");
   $msgerror.setAttribute("style", "display: none");
   $msgerror.innerHTML = "";
-}
+  resetFilds();
+};
 
 function msgErrorText() {
   $msgerror.innerHTML = `<strong>${$msg}</strong>`;
-}
+};
 
 function msgErrorStyle() {
   $msgsuccess.setAttribute("style", "display: none");
   $msgsuccess.innerHTML = "";
   $msgerror.setAttribute("style", "display: block");
-}
+};
+
+function showLoader() {
+  loader.style.display = "flex";
+};
+
+function hideLoader() {
+  loader.style.display = "none";
+};
+
+function hideMsg() {
+  if ($msgerror || $msgsuccess.style.display == "block") {
+    $msgerror.setAttribute("style", "display: none");
+    $msgsuccess.setAttribute("style", "display: none");
+    return;
+  };
+};
 
 function resetFilds() {
   $name.value = "";
@@ -107,6 +127,9 @@ function resetFilds() {
   disabledInputPassword();
   $confirmPassword.value = "";
   disabledInputConfirmPassword();
-}
+};
 
-$btmSubmit.addEventListener("click", validForm);
+$btmSubmit.addEventListener("click", () => {
+  hideMsg();
+  validForm();
+});
