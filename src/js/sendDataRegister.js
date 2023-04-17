@@ -4,7 +4,7 @@ const $msgsuccess = document.querySelector(".msgsuccess");
 const urlLocal = "http://localhost:3000";
 const urlRender = "https://api-cutelariacampos.onrender.com";
 const urlBase = urlRender;
-let clearFileld = "Campos Vazios";
+let invalidFileld = "Campos Inválidos";
 let $msg = "Erro";
 
 async function validForm() {
@@ -33,14 +33,13 @@ async function validForm() {
     })
       .then(awtResponce)
       .then(dataPost)
-      .then(msgSuccessText)
-      .then(msgSuccessStyle)
       .catch(msgErrorText)
       .catch(msgErrorStyle);
   } else {
-    $msg = clearFileld;
+    $msg = invalidFileld;
     msgErrorStyle();
     msgErrorText();
+    colors();
   }
 }
 
@@ -50,6 +49,33 @@ function awtResponce(response) {
 
 function dataPost(dataPost) {
   $msg = Object.values(dataPost);
+
+  if ($msg == "Já Existe Um Usuário Com Esse E-mail") {
+    msgErrorStyle();
+    msgErrorText();
+    $labelEmail.setAttribute("style", "color: var(--cor9)");
+    $email.setAttribute("style", "border-bottom: 2px solid var(--cor9)");
+  }
+  if ($msg == "Cadastro Bem Sucedido!") {
+    msgSuccessStyle();
+    msgSuccessText();
+  }
+  if ($msg == "Erro Desconhecido Tente Novamente Mais Tarde") {
+    msgErrorStyle();
+    msgErrorText();
+    colors();
+  }
+}
+
+function colors() {
+  $labelName.setAttribute("style", "color: var(--cor9)");
+  $name.setAttribute("style", "border-bottom: 2px solid var(--cor9)");
+  $labelEmail.setAttribute("style", "color: var(--cor9)");
+  $email.setAttribute("style", "border-bottom: 2px solid var(--cor9)");
+  $labelPassword.setAttribute("style", "color: var(--cor9)");
+  $password.setAttribute("style", "border-bottom: 2px solid var(--cor9)");
+  $labelConfirmPassword.setAttribute("style", "color: var(--cor9)");
+  $confirmPassword.setAttribute("style", "border-bottom: 2px solid var(--cor9)");
 }
 
 function msgSuccessText() {
