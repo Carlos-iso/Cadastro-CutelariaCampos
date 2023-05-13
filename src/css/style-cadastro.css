@@ -5,32 +5,32 @@
     src: url(../fonts/Righteous-Regular.ttf);
 }
 
-:root{
+:root {
     --cor0: #1E1E1E;
     --cor1: #525252;
     --cor3: #6B6B6B;
     --cor4: #FFFFFF;
     --cor5: #000000;
     --cor6: #D9D9D9;
-    --cor7: #006404;
+    --cor7: #004102;
     --cor8: #bbffbe;
-    --cor9: #640000;
+    --cor9: #500000;
     --cor10: #ffbbbb;
 }
 
-*{
+* {
     margin: 0px;
     padding: 0px;
     font-family: Righteous;
 }
 
-body{
+body {
     background-color: var(--cor0);
     display: flex;
     justify-content: center;
 }
 
-.container{
+.container {
     width: auto;
     height: auto;
     position: relative;
@@ -44,12 +44,12 @@ body{
     box-shadow: 3px 3px 1px 0px #52525260;
 }
 
-.title{
+.title {
     padding: 7px;
     text-align: center;
 }
 
-.msgerror{
+.msgerror {
     text-align: center;
     color: var(--cor9);
     background-color: var(--cor10);
@@ -58,7 +58,7 @@ body{
     display: none;
 }
 
-.msgsuccess{
+.msgsuccess {
     text-align: center;
     color: var(--cor7);
     background-color: var(--cor8);
@@ -67,14 +67,14 @@ body{
     display: none;
 }
 
-@keyframes rotateHr{
-    to{
+@keyframes rotateHr {
+    to {
         transform: rotate(1turn);
     }
 }
 
-@keyframes rotateAr{
-    to{
+@keyframes rotateAr {
+    to {
         transform: rotate(2turn);
     }
 }
@@ -94,7 +94,7 @@ body{
     color: var(--cor0);
 }
 
-.loader-container{
+.loader-container {
     background-color: transparent;
     width: 40px;
     height: 40px;
@@ -102,7 +102,7 @@ body{
     border-radius: 50%;
 }
 
-.lineex{
+.lineex {
     animation: rotateHr 2s infinite;
     width: 37px;
     height: 37px;
@@ -114,7 +114,7 @@ body{
     border-radius: 50%;
 }
 
-.linein{
+.linein {
     animation: rotateAr 3s infinite;
     width: 28px;
     height: 28px;
@@ -123,16 +123,16 @@ body{
     align-items: center;
     border: 3px solid transparent;
     border-bottom-color: var(--cor0);
-    border-radius: 50%;    
+    border-radius: 50%;
 }
 
-.label-float{
+.label-float {
     position: relative;
     padding-top: 13px;
     margin-bottom: 8px;
 }
 
-.label-float input{
+.label-float input {
     width: 100%;
     padding: 5px 0px;
     display: inline-block;
@@ -146,11 +146,11 @@ body{
     border-radius: 0;
 }
 
-.label-float input:focus{
+.label-float input:focus {
     border-bottom: 2px solid var(--cor1);
 }
 
-.label-float label{
+.label-float label {
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -159,14 +159,14 @@ body{
     transition: all .3s ease-out;
 }
 
-.label-float input:focus + label,
-.label-float input:valid + label{
+.label-float input:focus+label,
+.label-float input:valid+label {
     font-size: 12px;
     margin-top: 0px;
     color: var(--cor1);
 }
 
-.eye{
+.eye {
     position: absolute;
     top: 18px;
     right: 0px;
@@ -175,7 +175,7 @@ body{
     transition: all .3s ease-in;
 }
 
-#eye{
+#eye {
     position: absolute;
     top: 18px;
     right: 0px;
@@ -184,14 +184,14 @@ body{
     transition: all .3s ease-in;
 }
 
-.container-btn{
+.container-btn {
     width: 100%;
     height: auto;
     display: flex;
     justify-content: end;
 }
 
-.btn-create{
+.btn-create {
     color: var(--cor0);
     background-color: transparent;
     padding: 5px;
@@ -203,26 +203,26 @@ body{
     transition: all .3s ease-in;
 }
 
-.btn-create:hover{
+.btn-create:hover {
     color: var(--cor1);
     border-bottom: 2px solid var(--cor1);
     border-top: 2px solid var(--cor1);
 }
 
-.redirect{
+.redirect {
     margin: 0px 0px 13px 0px;
 }
 
-.cadastre{
+.cadastre {
     text-decoration: none;
     color: var(--cor0);
 }
 
-.cadastre:hover{
+.cadastre:hover {
     color: var(--cor5);
 }
 
-.or{
+.or {
     display: flex;
     justify-content: center;
 }
@@ -231,7 +231,7 @@ body{
     font-size: 28px;
 }
 
-.other-login{
+.other-login {
     width: 100%;
     height: 50px;
     display: flex;
@@ -239,8 +239,32 @@ body{
     justify-content: center;
 }
 
-.other-login img{
+.other-login img {
     padding: 5px;
     gap: 8px;
     cursor: pointer;
+}
+
+.container-require {
+    width: 300px;
+    height: 150px;
+    position: absolute;
+    top: 285px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--cor1);
+    border-radius: 24px;
+    box-shadow: 3px 3px 1px 0px #52525260;
+    z-index: 1;
+}
+
+.require {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--cor0);
 }

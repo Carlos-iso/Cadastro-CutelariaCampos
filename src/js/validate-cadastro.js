@@ -15,6 +15,13 @@ const $confirmPassword = document.querySelector(".confirm-password");
 const $labelConfirmPassword = document.querySelector(".confirmpassword-label");
 let validConfirmPassword = false;
 
+const $passwordRequire = document.querySelector(".container-require");
+const $passwordCapsLock = document.querySelector(".caps-lock");
+const $passwordTiny = document.querySelector(".tiny");
+const $passwordNum = document.querySelector(".num");
+const $passwordSymbol = document.querySelector(".symbol");
+const $passwordMin = document.querySelector(".min");
+
 //Functions Validate
 
 function validateName() {
@@ -32,7 +39,7 @@ function validateName() {
 }
 
 const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+.)*\.\w+([-.]\w+)*$/;
-const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
 function validateEmail() {
   const $emailValue = $email.value.trim();
@@ -50,8 +57,53 @@ function validateEmail() {
   }
 }
 
+function passRequire() {
+  if ($password.value != 0 && validPassword == false) {
+    $passwordRequire.setAttribute("style", "display: flex");
+  } else {
+    $passwordRequire.setAttribute("style", "display: none");
+  }
+}
+
+function passTest() {
+  let passwordCaspLock = /[A-Z]/;
+  let passwordTiny = /[a-z]/;
+  let passwordNum = /[0-9]/;
+  let passwordSymbol = /\W/;
+
+  let $passwordValue = $password.value.trim();
+
+  if (passwordCaspLock.test($passwordValue)) {
+    $passwordCapsLock.setAttribute("style", "color: var(--cor7)");
+  } else {
+    $passwordCapsLock.setAttribute("style", "color: var(--cor9)");
+  }
+  if (passwordTiny.test($passwordValue)) {
+    $passwordTiny.setAttribute("style", "color: var(--cor7)");
+  } else {
+    $passwordTiny.setAttribute("style", "color: var(--cor9)");
+  }
+  if (passwordNum.test($passwordValue)) {
+    $passwordNum.setAttribute("style", "color: var(--cor7)");
+  } else {
+    $passwordNum.setAttribute("style", "color: var(--cor9)");
+  }
+  if (passwordSymbol.test($passwordValue)) {
+    $passwordSymbol.setAttribute("style", "color: var(--cor7)");
+  } else {
+    $passwordSymbol.setAttribute("style", "color: var(--cor9)");
+  }
+  if ($passwordValue.length >= 8) {
+    $passwordMin.setAttribute("style", "color: var(--cor7)");
+  } else {
+    $passwordMin.setAttribute("style", "color: var(--cor9)");
+  }
+}
+
 function validatePassword() {
   const $passwordValue = $password.value.trim();
+  passRequire();
+  passTest();
   if (passwordRegex.test($passwordValue)) {
     $labelPassword.setAttribute("style", "color: var(--cor7)");
     $labelPassword.innerHTML = "Senha";
@@ -69,12 +121,18 @@ function validateConfirmPassword() {
   if ($password.value === $confirmPassword.value) {
     $labelConfirmPassword.setAttribute("style", "color: var(--cor7)");
     $labelConfirmPassword.innerHTML = "Comfirmar Senha";
-    $confirmPassword.setAttribute("style", "border-bottom: 2px solid var(--cor7)");
+    $confirmPassword.setAttribute(
+      "style",
+      "border-bottom: 2px solid var(--cor7)"
+    );
     validConfirmPassword = true;
   } else {
     $labelConfirmPassword.setAttribute("style", "color: var(--cor9)");
     $labelConfirmPassword.innerHTML = "*Senha Incorreta*";
-    $confirmPassword.setAttribute("style", "border-bottom: 2px solid var(--cor9)");
+    $confirmPassword.setAttribute(
+      "style",
+      "border-bottom: 2px solid var(--cor9)"
+    );
     validConfirmPassword = false;
   }
 }
@@ -112,7 +170,10 @@ function disabledInputConfirmPassword() {
   if ($confirmPassword.value === "") {
     $labelConfirmPassword.setAttribute("style", "color: var(--cor0)");
     $labelConfirmPassword.innerHTML = "Comfirmar Senha";
-    $confirmPassword.setAttribute("style", "border-bottom: 2px solid var(--cor0)");
+    $confirmPassword.setAttribute(
+      "style",
+      "border-bottom: 2px solid var(--cor0)"
+    );
     validConfirmPassword = false;
   }
 }
@@ -126,7 +187,11 @@ $email.addEventListener("input", validateEmail);
 $email.addEventListener("blur", disabledInputEmail);
 
 $password.addEventListener("input", validatePassword);
-$password.addEventListener("blur", disabledInputPassword);
+$password.addEventListener("blur", () => {
+  disabledInputPassword();
+  passRequire();
+});
+$password.addEventListener("focus", passRequire);
 
 $confirmPassword.addEventListener("input", validateConfirmPassword);
 $confirmPassword.addEventListener("blur", disabledInputConfirmPassword);
