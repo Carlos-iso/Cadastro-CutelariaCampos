@@ -20,6 +20,5 @@ function eyePasswordRegister(){
     };
 }
 
-
 eyeClass.addEventListener('click', eyePasswordRegister);
 eyeId.addEventListener('click', eyePasswordRegister);

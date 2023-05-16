@@ -4,7 +4,7 @@ const $msgerror = document.querySelector(".msgerror");
 const $msgsuccess = document.querySelector(".msgsuccess");
 const urlLocal = "http://localhost:3000";
 const urlRender = "https://api-cutelariacampos.onrender.com";
-const urlBase = urlRender;
+const urlBase = urlLocal;
 let invalidFileld = "Campos Inválidos";
 let $msg = "Erro";
 
@@ -17,8 +17,8 @@ async function validForm() {
     validConfirmPassword === true
   ) {
     let $nameValue = $name.value;
-    let $emailValue = $email.value;
-    let $passwordValue = $password.value;
+    let $emailValue = $email.value.toLowerCase();
+    let $passwordValue = $password.value.trim();
 
     let jsonDataCustomer = JSON.stringify({
       name: $nameValue,

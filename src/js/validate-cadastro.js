@@ -158,6 +158,7 @@ function disabledInputEmail() {
 }
 
 function disabledInputPassword() {
+  passRequire();
   if ($password.value === "") {
     $labelPassword.setAttribute("style", "color: var(--cor0)");
     $labelPassword.innerHTML = "Senha";
@@ -187,10 +188,7 @@ $email.addEventListener("input", validateEmail);
 $email.addEventListener("blur", disabledInputEmail);
 
 $password.addEventListener("input", validatePassword);
-$password.addEventListener("blur", () => {
-  disabledInputPassword();
-  passRequire();
-});
+$password.addEventListener("blur", disabledInputPassword);
 $password.addEventListener("focus", passRequire);
 
 $confirmPassword.addEventListener("input", validateConfirmPassword);
