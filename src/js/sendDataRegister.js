@@ -4,7 +4,7 @@ const $msgerror = document.querySelector(".msgerror");
 const $msgsuccess = document.querySelector(".msgsuccess");
 const urlLocal = "http://localhost:3000";
 const urlRender = "https://api-cutelariacampos.onrender.com";
-const urlBase = urlLocal;
+const urlBase = urlRender;
 let invalidFileld = "Campos Inválidos";
 let $msg = "Erro";
 
