@@ -1,3 +1,5 @@
+"use strict";
+
 //Selectors
 const $name = document.querySelector(".name");
 const $labelName = document.querySelector(".name-label");
